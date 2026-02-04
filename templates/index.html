@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Burnt Prediction Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Calorie Burnt Prediction</h1>
+        <p class="subtitle">Enter your details to predict calories burnt</p>
+
+        <form action="/predict" method="post">
+            <div class="grid">
+                <input type="number" name="Age" placeholder="Age" required>
+
+                <input type="number" step="0.1" name="Height" placeholder="Height (cm)" required>
+
+                <input type="number" step="0.1" name="Weight" placeholder="Weight (kg)" required>
+
+                <input type="number" step="0.1" name="Duration" placeholder="Exercise Duration (min)" required>
+
+                <input type="number" step="0.1" name="Heart_Rate" placeholder="Heart Rate" required>
+
+                <input type="number" step="0.1" name="Body_Temp" placeholder="Body Temperature (°C)" required>
+
+                <!-- FIXED: name must be "Gender" -->
+                <select name="Gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <button type="submit">Predict Calories</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            <h2>{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
